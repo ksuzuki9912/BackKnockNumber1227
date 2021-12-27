@@ -29,10 +29,10 @@ public class Common extends Application {  //グローバル変数共有クラ�
     public void initA(){  //登録に(MainActivity2で)使用する値を初期化
         yv1 = 0;
         count1 = 0;
-        An0 = 0;
-        An1 = 0;
-        An2 = 0;
-        An3 = 0;
+        An0 = -1;
+        An1 = -1;
+        An2 = -1;
+        An3 = -1;
         Af0 = 0;
         Af1 = 0;
         Af2 = 0;
@@ -41,10 +41,10 @@ public class Common extends Application {  //グローバル変数共有クラ�
     public void initB(){  //認証に(MainActivity3で)使用する値を初期化
         yv2 = 0;
         count2 = 0;
-        Bn0 = 0;
-        Bn1 = 0;
-        Bn2 = 0;
-        Bn3 = 0;
+        Bn0 = -1;
+        Bn1 = -1;
+        Bn2 = -1;
+        Bn3 = -1;
         Bf0 = 0;
         Bf1 = 0;
         Bf2 = 0;
