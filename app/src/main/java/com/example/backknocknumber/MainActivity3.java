@@ -164,7 +164,7 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
         MyView4 myView4 = new MyView4(this);
         setContentView(myView3);
 
-        int endPosition = 6870; //画面の最終到達位置
+        int endPosition = 6848; //画面の最終到達位置
         TestAnimation3 testAnimation3 = new TestAnimation3(myView3, endPosition);
         testAnimation3.setDuration(10000);
         testAnimation3.setRepeatCount(3);
@@ -188,6 +188,15 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
 
             @Override
             public void onAnimationRepeat(Animation animation) {
+                if(common.count2==4){
+                    button_flag = 0;
+                    testAnimation3.cancel();
+                    System.out.println("アニメーション1が終了しました");
+                    setContentView(myView4);
+                    TestAnimation4 testAnimation4 = new TestAnimation4(myView4, 0);
+                    testAnimation4.setDuration(5000);
+                    myView4.startAnimation(testAnimation4);
+                }
 
             }
         });
@@ -228,7 +237,7 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
             float xc3 = xc + xc2;
             float yc2 = yc / 2;
             float yc3 = yc + yc2;
-            float yc4 = 241;
+            float yc4 = yc2/2;
             float yr = yc3 + 25;
 
             // 線
@@ -276,10 +285,10 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
                 //System.out.println(ia);
             }
             //System.out.println((yv));
-            if (common.yv2 == 6870) {
-                //System.out.println(count);
-                common.count2++;
-            }
+//            if (common.yv2 == 6870) {
+//                //System.out.println(count);
+//                common.count2++;
+//            }
         }
 
 //        @Override
@@ -600,51 +609,56 @@ public class MainActivity3 extends AppCompatActivity implements SensorEventListe
 
     public void inputNumber() {
         int xc = 540;
-        int num = (common.yv2 - 970) / xc;
-        if (num >= 0 && common.yv2 >= 970) {
+        int num = (common.yv2 - 908) / xc;
+        if (num >= 0 && common.yv2 >= 908) {//908=yc+yc4-xc/2(上のラインの半個上に０が来たら判定開始する（実験端末基準）
             switch (common.count2) {
                 case 0:
 
-                    if (common.Bf0 == 0) {
+                    if (common.Bf0 == 0) {//908=yc+yc4-xc/2(上のラインの半個上に０が来たら判定開始する（実験端末基準）
                         common.Bn0 = num;
                         System.out.println(common.Bn0);
                         common.Bf0 = 1;
+                        common.count2++;
                     } else {
                         System.out.println("既に入力されています。");
                     }
 
                     break;
                 case 1:
-                    if (common.Bf1 == 0) {
+                    if (common.Bf1 == 0&&num!=common.Bn0) {
                         common.Bn1 = num;
                         System.out.println(common.Bn1);
                         common.Bf1 = 1;
+                        common.count2++;
                     } else {
                         System.out.println("既に入力されています。");
                     }
 
                     break;
                 case 2:
-                    if (common.Bf2 == 0) {
+                    if (common.Bf2 == 0&&num!=common.Bn1) {
                         common.Bn2 = num;
                         System.out.println(common.Bn2);
                         common.Bf2 = 1;
+                        common.count2++;
                     } else {
                         System.out.println("既に入力されています。");
                     }
 
                     break;
                 case 3:
-                    if (common.Bf3 == 0) {
+                    if (common.Bf3 == 0&&num!=common.Bn2) {
                         common.Bn3 = num;
                         System.out.println(common.Bn3);
                         common.Bf3 = 1;
+                        common.count2++;
                     } else {
                         System.out.println("既に入力されています。");
                     }
 
                     break;
                 default:
+                    //System.out.println(num);
                     break;
             }
 
